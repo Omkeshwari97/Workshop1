@@ -4,6 +4,7 @@ public class TicTacToeGame
 {
     String board[] = new String[10];
     String user, computer;
+    String option = "";
 
     public void createBoard()
     {
@@ -16,42 +17,62 @@ public class TicTacToeGame
     public void chooseOption()
     {
         Scanner scanner = new Scanner(System.in);
-        String option = "";
 
-        do
+        System.out.println("Enter option X/O:");
+        option = scanner.next();
+
+        if(option.equals("X") || option.equals("O"))
         {
-            System.out.println("Enter option X/O:");
-            option = scanner.next();
-
-            if(option == "X" && option == "O")
+            switch (option) 
             {
-                switch (option) 
-                {
                     case "X":   user = "X";
                                 computer = "O";
                                 break;
-                
+                    
                     case "O":   user = "O";
                                 computer = "X";
                                 break;            
-                    
-                    default:    System.out.println("Invalid Input"); 
-                }
             }
+        }
+        else
+        {
+                System.out.println("Invalid Input");
+        }
 
-        }while(option =="X" || option =="O");
     }
 
     void showBoard()
     {
         for(int i = 1; i < 10 ; i++)
         {
-            System.out.print("X" + "|");
+            System.out.print(board[i] + "|");
             if(i % 3 == 0)
             {
                 System.out.println();
             }
         }
+    }
+
+    void makeMove()
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Index from 1 to 9:");
+        int index = scanner.nextInt();
+
+        for(int i=0 ; i < board.length ; i++)
+        {
+            if(board[i].equals("") && i == index-1)
+            {
+                board[i]=option;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        System.out.println("Index filled");
     }
 
 
@@ -61,6 +82,7 @@ public class TicTacToeGame
         gameObject.createBoard();
         gameObject.chooseOption();
         gameObject.showBoard();
+        gameObject.makeMove();
 	}
 
 }
