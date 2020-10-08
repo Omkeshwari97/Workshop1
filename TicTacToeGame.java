@@ -13,7 +13,7 @@ public class TicTacToeGame
 		}
     }
 
-    /*public void chooseOption()
+    public void chooseOption()
     {
         Scanner scanner = new Scanner(System.in);
         String option = "";
@@ -42,7 +42,7 @@ public class TicTacToeGame
         }while(option =="X" || option =="O");
     }
 
-    void showBoard()
+    /*void showBoard()
     {
         for(int i = 0; i < board.length ; i++)
         {
@@ -55,7 +55,7 @@ public class TicTacToeGame
 	{
         TicTacToeGame gameObject = new TicTacToeGame();
         gameObject.createBoard();
-       // gameObject.chooseOption();
+        gameObject.chooseOption();
        // gameObject.showBoard();
 	}
 
