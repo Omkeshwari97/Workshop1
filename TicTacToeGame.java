@@ -3,14 +3,16 @@
 public class TicTacToeGame 
 {
     String board[] = new String[10];
-    String user, computer;
+    int boardFlag[] = new int[10];
+    String user = "1", computer ="2";
     String option = "";
 
     public void createBoard()
     {
         for(int i = 0; i < board.length; i++)
 		{
-			board[i] = "";
+            board[i] = "";
+            boardFlag[i] = 0;
 		}
     }
 
@@ -46,7 +48,7 @@ public class TicTacToeGame
     {
         for(int i = 1; i < 10 ; i++)
         {
-            System.out.print(board[i-1] + "|");
+            System.out.print(board[i-1] + " |");
             if(i % 3 == 0)
             {
                 System.out.println();
@@ -55,61 +57,97 @@ public class TicTacToeGame
         }
     }
 
-    void makeMove(String input)
+    int makeMove(String input)
     {
         Scanner scanner = new Scanner(System.in);
-        int index = 0, flag = 0;
+        int index = 0, flag = 0, flagFull = 1;
 
-        do
+        for(int i = 0; i < boardFlag.length; i++)
         {
-            flag = 0;
-
-            System.out.println("Enter Index from 1 to 9:");
-            index = scanner.nextInt();
-
-            if(index<1 || index>9)
+            if(boardFlag[i] == 0)
             {
-                flag = 1;
-                System.out.println("Index out of range");
+                flagFull = 0;
             }
-            else
+        }
+
+        if(flagFull == 1)
+        {
+            return 1;
+        }
+        else
+        {
+            do
             {
-                if(board[index-1].equals(""))
+                flag = 0;
+
+                System.out.println("Enter Index from 1 to 9:");
+                index = scanner.nextInt();
+
+                if(index < 1 || index > 9)
                 {
-                    board[index-1] = input;
+                    flag = 1;
+                    System.out.println("Index out of range");
                 }
                 else
                 {
-                    System.out.println("Index filled");
-                    flag = 1;
+                    if(board[index-1].equals(""))
+                    {
+                        board[index-1] = input;
+                        boardFlag[index-1] = 1;
+                    }
+                    else
+                    {
+                        System.out.println("Index filled");
+                        flag = 1;
+                    }
                 }
-            }
 
-        }while(flag == 1);        
+            }while(flag == 1);        
+        }
+
+        return 0;
     }
 
+    int choosingToss()
+    {
+        int options=1 + (int)(Math.random() * ((2 - 1) + 1));
+        return int;
+    }
 
 	public static void main(String[] args) 
 	{
         TicTacToeGame gameObject = new TicTacToeGame();
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        int choice, full;
+
+        gameObject.createBoard();
+        int toss = gameObject.choosingToss();
+        if(toss == 1)
+        {
+            System.out.println("User first");
+        }
+        if(toss ==2 )
+        {
+            System.out.println("Computer First");
+        }
 
         do
         {
-            System.out.println("1. createBoard");
-            System.out.println("2. show board");
-            System.out.println("3. make move");
+            System.out.println("1. show board");
+            System.out.println("2. make move");
             System.out.println("Enter choice:");
             choice = scanner.nextInt();
             switch(choice)
             {
-                case 1: gameObject.createBoard();
+                case 1: gameObject.showBoard();
                         break;
-                case 2: gameObject.showBoard();
-                        break;
-                case 3: String input = gameObject.chooseOption();
-                        gameObject.makeMove(input);
+                case 2: String input = gameObject.chooseOption();
+                        full = gameObject.makeMove(input);
+                        if(full == 1)
+                        {
+                            System.out.println("game over");
+                            return;
+                        }
                         break;
             }
         }while(choice>=1 && choice<=4);
