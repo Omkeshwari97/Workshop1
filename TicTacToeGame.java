@@ -14,7 +14,7 @@ public class TicTacToeGame
 		}
     }
 
-    public void chooseOption()
+    public String chooseOption()
     {
         Scanner scanner = new Scanner(System.in);
 
@@ -39,21 +39,23 @@ public class TicTacToeGame
                 System.out.println("Invalid Input");
         }
 
+        return user;
     }
 
     void showBoard()
     {
         for(int i = 1; i < 10 ; i++)
         {
-            System.out.print(board[i] + "|");
+            System.out.print(board[i-1] + "|");
             if(i % 3 == 0)
             {
                 System.out.println();
+                System.out.println("----");
             }
         }
     }
 
-    void makeMove()
+    void makeMove(String input)
     {
         Scanner scanner = new Scanner(System.in);
         int index = 0, flag = 0;
@@ -70,28 +72,47 @@ public class TicTacToeGame
                 flag = 1;
                 System.out.println("Index out of range");
             }
-        }while(flag == 1);
+            else
+            {
+                if(board[index-1].equals(""))
+                {
+                    board[index-1] = input;
+                }
+                else
+                {
+                    System.out.println("Index filled");
+                    flag = 1;
+                }
+            }
 
-
-        if(board[index-1].equals(""))
-        {
-            board[index-1] = option;
-        }
-        else
-        {
-            System.out.println("Index filled");
-        }
-        
+        }while(flag == 1);        
     }
 
 
 	public static void main(String[] args) 
 	{
         TicTacToeGame gameObject = new TicTacToeGame();
-        gameObject.createBoard();
-        gameObject.chooseOption();
-        gameObject.showBoard();
-        gameObject.makeMove();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do
+        {
+            System.out.println("1. createBoard");
+            System.out.println("2. show board");
+            System.out.println("3. make move");
+            System.out.println("Enter choice:");
+            choice = scanner.nextInt();
+            switch(choice)
+            {
+                case 1: gameObject.createBoard();
+                        break;
+                case 2: gameObject.showBoard();
+                        break;
+                case 3: String input = gameObject.chooseOption();
+                        gameObject.makeMove(input);
+                        break;
+            }
+        }while(choice>=1 && choice<=4);
 	}
 
 }
