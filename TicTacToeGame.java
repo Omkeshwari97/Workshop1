@@ -56,23 +56,32 @@ public class TicTacToeGame
     void makeMove()
     {
         Scanner scanner = new Scanner(System.in);
+        int index = 0, flag = 0;
 
-        System.out.println("Enter Index from 1 to 9:");
-        int index = scanner.nextInt();
-
-        for(int i=0 ; i < board.length ; i++)
+        do
         {
-            if(board[i].equals("") && i == index-1)
-            {
-                board[i]=option;
-            }
-            else
-            {
-                break;
-            }
-        }
+            flag = 0;
 
-        System.out.println("Index filled");
+            System.out.println("Enter Index from 1 to 9:");
+            index = scanner.nextInt();
+
+            if(index<1 || index>9)
+            {
+                flag = 1;
+                System.out.println("Index out of range");
+            }
+        }while(flag == 1);
+
+
+        if(board[index-1].equals(""))
+        {
+            board[index-1] = option;
+        }
+        else
+        {
+            System.out.println("Index filled");
+        }
+        
     }
 
 
