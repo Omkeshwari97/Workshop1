@@ -13,7 +13,7 @@ public class TicTacToeGame
 		}
     }
 
-    public void chooseOption()
+    /*public void chooseOption()
     {
         Scanner scanner = new Scanner(System.in);
         String option = "";
@@ -48,15 +48,15 @@ public class TicTacToeGame
         {
             System.out.println("Position: " + i +" : " + board[i]);
         }
-    }
+    }*/
 
 
 	public static void main(String[] args) 
 	{
         TicTacToeGame gameObject = new TicTacToeGame();
         gameObject.createBoard();
-        gameObject.chooseOption();
-        gameObject.showBoard();
+       // gameObject.chooseOption();
+       // gameObject.showBoard();
 	}
 
 }
