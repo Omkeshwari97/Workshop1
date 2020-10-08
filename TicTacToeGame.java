@@ -42,13 +42,13 @@ public class TicTacToeGame
         }while(option =="X" || option =="O");
     }
 
-    /*void showBoard()
+    void showBoard()
     {
         for(int i = 0; i < board.length ; i++)
         {
             System.out.println("Position: " + i +" : " + board[i]);
         }
-    }*/
+    }
 
 
 	public static void main(String[] args) 
@@ -56,7 +56,7 @@ public class TicTacToeGame
         TicTacToeGame gameObject = new TicTacToeGame();
         gameObject.createBoard();
         gameObject.chooseOption();
-       // gameObject.showBoard();
+        gameObject.showBoard();
 	}
 
 }
