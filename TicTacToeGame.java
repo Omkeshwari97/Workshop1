@@ -44,9 +44,13 @@ public class TicTacToeGame
 
     void showBoard()
     {
-        for(int i = 0; i < board.length ; i++)
+        for(int i = 1; i < 10 ; i++)
         {
-            System.out.println("Position: " + i +" : " + board[i]);
+            System.out.print("X" + "|");
+            if(i % 3 == 0)
+            {
+                System.out.println();
+            }
         }
     }
 
