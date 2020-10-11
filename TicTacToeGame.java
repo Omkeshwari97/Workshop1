@@ -285,6 +285,7 @@ public class TicTacToeGame
        return -1;
    }
    
+   //UC12
    void game(String player)
    {
        TicTacToeGame gameObject = new TicTacToeGame();
@@ -386,7 +387,7 @@ public class TicTacToeGame
            }
            if(gameresult == 2)
            {
-               System.out.println("Tie match");
+               System.out.println("Tie match! Board is full!");
            }
 
        }while(gameresult!= 1 && gameresult!=2);
