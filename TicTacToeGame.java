@@ -222,6 +222,30 @@ public class TicTacToeGame
        }
        return -1;
    }
+   
+   //UC9
+   int blockUserPosition()
+   {
+	   String copyofBoard[] = board.clone();
+
+       for(int i=0; i<9 ;i++)
+       {
+           if(copyofBoard[i].equals(""))
+           {
+               copyofBoard[i] = user;
+
+               if(gameResult(copyofBoard) == 1)
+               {
+                   return i;
+               }
+               else
+               {
+                   copyofBoard[i] = "";
+               }
+           }
+       }
+       return -1;
+   }
 
    void game(String player)
    {
@@ -274,9 +298,19 @@ public class TicTacToeGame
                
                if(winPosition == -1)
                {
-                   int options = 1 + (int)(Math.random() * ((9 - 1) + 1));
-                   System.out.println("Computer Random Move: " + options);
-                   board1 = gameObject.makeMove(computer, options);
+            	   int blockPosition = gameObject.blockUserPosition();
+            	   
+            	   if(blockPosition == -1)
+            	   {
+	                   int options = 1 + (int)(Math.random() * ((9 - 1) + 1));
+	                   System.out.println("Computer Random Move: " + options);
+	                   board1 = gameObject.makeMove(computer, options);
+            	   }
+            	   else
+            	   {
+            		   System.out.println("Computer Block Move: " + (blockPosition+1));
+	                   board1 = gameObject.makeMove(computer, blockPosition+1);
+            	   }
                }
                else
                {
