@@ -395,22 +395,36 @@ public class TicTacToeGame
    
 	public static void main(String[] args) 
 	{
-       TicTacToeGame gameObject = new TicTacToeGame();
-       Scanner scanner = new Scanner(System.in);
-       int choice, full;
+		int flag = 0;
+		
+		//UC13
+		do
+		{
+			TicTacToeGame gameObject = new TicTacToeGame();
+			Scanner scanner = new Scanner(System.in);
+			int choice, full;
 
-       gameObject.createBoard();
-       int toss = gameObject.choosingToss();
-       if(toss == 1)
-       {
-           System.out.println("User starts Game");
-           gameObject.game("User");
-       }
-       if(toss ==2 )
-       {
-           System.out.println("Computer starts Game");
-           gameObject.game("Computer");
-       }
+			gameObject.createBoard();
+			int toss = gameObject.choosingToss();
+			if(toss == 1)
+			{
+				System.out.println("User starts Game");
+				gameObject.game("User");
+		    }
+			if(toss ==2 )
+			{
+				System.out.println("Computer starts Game");
+				gameObject.game("Computer");
+			}
+			
+			System.out.println("DO YOU WANT TO PLAY NEW GAME? Press 1 else 0");
+			flag = scanner.nextInt();
+			
+			if(flag==0)
+			{
+				return;
+			}
+		}while(flag == 1);
 	}
 
 }
