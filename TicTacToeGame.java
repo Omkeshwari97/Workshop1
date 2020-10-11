@@ -52,7 +52,7 @@ public class TicTacToeGame
     {
         for(int i = 1; i < 10 ; i++)
         {
-            System.out.print(board[i-1] + " |");
+            System.out.print(" "+board[i-1] + " |");
             if(i % 3 == 0)
             {
                 System.out.println();
@@ -160,15 +160,19 @@ public class TicTacToeGame
             } 
             else
             {
-                for(int i = 0; i < boardFlag.length ; i++)
+                for(int i = 0; i < 9 ; i++)
                 {
-                    flagresult =0;
-
+                    //System.out.println(i+1+"--"+boardFlag[i]);
                     if(boardFlag[i] == 1)
                     {
-                        flagresult = 2;
+                        flag = flag +1;
                     }
-                }
+
+                    if(flag == 9)
+                    {
+                        return 2;
+                    }
+                }     
             }
 
         return flagresult;
@@ -226,7 +230,7 @@ public class TicTacToeGame
             gameObject.showBoard();
             gameresult = gameObject.gameResult();
             
-            System.out.println("RESULT:"+gameresult);
+            //System.out.println("RESULT:"+gameresult);
             if(gameresult == 1)
             {
                 System.out.println(currentPlayer+" wins");
@@ -257,29 +261,6 @@ public class TicTacToeGame
             System.out.println("Computer starts Game");
             gameObject.game("Computer");
         }
-
-        //gameObject.gameresult("User");
-        /*
-        do
-        {
-            System.out.println("1. show board");
-            System.out.println("2. make move");
-            System.out.println("Enter choice:");
-            choice = scanner.nextInt();
-            switch(choice)
-            {
-                case 1: gameObject.showBoard();
-                        break;
-                case 2: String input = gameObject.chooseOption();
-                        full = gameObject.makeMove(input);
-                        if(full == 1)
-                        {
-                            System.out.println("game over");
-                            return;
-                        }
-                        break;
-            }
-        }while(choice>=1 && choice<=4);*/
 	}
 
 }
